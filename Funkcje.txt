@@ -1,0 +1,36 @@
+﻿Ligi:
+- Bundesliga (Niemcy)
+- BBVA (Hiszpania)
+- Premier League (Anglia)
+- Serie A (Włochy)
+- Ligue 1 (Francja)
+
+Dla lig:
+- Tabela wyników
+- Tabela strzelców
+- Terminarz
+- Drużyny
+
+Dla drużyn:
+- Zawodnicy (Imie, nazwisko, klub, narodowość, ilość bramek, ilość asyst, wzrost, waga)
+- Aktualny skład
+- Trener
+
+Dla użytkowników:
+- Głosowanie na drużynę tygodnia
+- Głosowanie na wynik meczu (W/P/R)
+- Tabela użytkowników z najtrafniejszym obstawianiem wyników
+- Głosowanie na zawodnika tygodnia
+
+Ligi | Wyniki głosowań | Logowanie | Rejestracja
+Ligi | Głosowanie | Wyniki głosowań | Wyloguj
+
+Sprinty:
+- projekt bazy danych
+- implementacja bd
+- rejestracja
+- logowanie
+- systemy głosowania dla użytkowników
+- panel użytkownika (dane, ustawienia)
+- wygląd strony
+- panel administratora
