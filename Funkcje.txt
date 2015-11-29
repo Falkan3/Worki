@@ -1,9 +1,9 @@
 ﻿Ligi:
-- Bundesliga (Niemcy)
-- BBVA (Hiszpania)
-- Premier League (Anglia)
-- Serie A (Włochy)
-- Ligue 1 (Francja)
+- Bundesliga (Niemcy) +
+- BBVA (Hiszpania) +
+- Premier League (Anglia) +
+- Serie A (Włochy) +
+- Ligue 1 (Francja) +
 
 Dla lig:
 - Tabela wyników
