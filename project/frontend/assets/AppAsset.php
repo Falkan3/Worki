@@ -15,12 +15,23 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    //public $basePath = '@webroot';
+    //public $baseUrl = '@web';
+    public $sourcePath='@bower/emmeline/';
     public $css = [
-        'css/site.css',
+        'css/style.css',
+        'css/magnific-popup.css',
+        'css/slider.css',
+        'css/lightbox.css'
     ];
     public $js = [
+        'js/jquery.cslider.js',
+        'js/modernizr.custom.28468.js',
+        'js/jquery.wmuSlider.js',
+        'js/nav.js',
+        'js/jquery.magnific-popup.js',
+        'js/jquery.min.js',
+        'js/jquery.lightbox.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

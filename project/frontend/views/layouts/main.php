@@ -3,14 +3,16 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use yii\helpers\Html;
+use yii\helpers\Html;/*
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
+use yii\widgets\Breadcrumbs;*/
 use frontend\assets\AppAsset;
-use common\widgets\Alert;
+#use common\widgets\Alert;
 
-AppAsset::register($this);
+#AppAsset::register($this);
+$asset=frontend\assets\AppAsset::register($this);
+$baseUrl=$asset->baseUrl;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -25,53 +27,66 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'Worki',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Strona domowa', 'url' => ['/site/index']],
-        ['label' => 'O nas', 'url' => ['/site/about']],
-        ['label' => 'Kontakt', 'url' => ['/site/contact']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Zarejestruj się', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Logowanie', 'url' => ['/site/login']];
+<div class="wrap"> 
+	<div class="header-top">
+	        <div class="logo">
+                        <img src="<?=$baseUrl?>/images/logo.png" alt=""/>
+                        <?php
+                            echo $this->getId();
+                        ?>
+			 </div>
+		     <div class="h_menu4"><!-- start h_menu4 -->
+				<a class="toggleMenu" href="#">Menu</a>
+				<ul class="nav">
+                                    <li class="active"><?= Html::a('Strona główna', ['site/index'], ['class' => '']); ?></li>
+                                    <li><?= Html::a('O nas', ['site/about'], ['class' => '']); ?></li>
+                                    <li><?= Html::a('Kontakt', ['site/contact'], ['class' => '']); ?></li>
+<?php
+if (Yii::$app->user->isGuest) {
+
+    echo "<li>". Html::a('Logowanie', ['site/login'], ['class' => ''])."</li>";
+    echo "<li>". Html::a('Rejestracja', ['site/signup'], ['class' => ''])."</li>";
     } else {
+        /*
         $menuItems[] = [
             'label' => 'Wyloguj (' . Yii::$app->user->identity->username . ')',
             'url' => ['/site/logout'],
             'linkOptions' => ['data-method' => 'post']
-        ];
+        ]; */
+        echo "<li>".Html::a('Wyloguj (' . Yii::$app->user->identity->username . ')', ['site/logout'], ['class' => ''])."</li>";
     }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
+?>
+					<li><a href="portfolio.html">Example</a>
+						<ul>
+							<li><a href="portfolio.html">Dropdown</a></li>
+							<li><a href="portfolio.html">Structure</a></li>
+							<li><a href="portfolio.html">People</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div><!-- end h_menu4 -->
+			<div class="clear"></div>
+		</div><!-- end header_main4 -->
+	 </div>
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
-    </div>
-</div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; Worki <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
+    
+    <?= $content ?>
+    
+		<div class="footer-bottom">
+	 		  <div class="wrap">
+	     	  	<div class="copy">
+				   <p>© 2014 Template by <a href="http://w3layouts.com" target="_blank"> w3layouts</a></p>
+			    </div>
+			    <div class="social">	
+				   <ul>	
+					  <li class="facebook"><a href="#"><span> </span></a></li>
+					  <li class="linkedin"><a href="#"><span> </span></a></li>
+					  <li class="twitter"><a href="#"><span> </span></a></li>		
+				   </ul>
+			    </div>
+			    <div class="clear"></div>
+			  </div>
+       </div>
 
 <?php $this->endBody() ?>
 </body>
