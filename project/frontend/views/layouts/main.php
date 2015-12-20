@@ -31,9 +31,6 @@ $baseUrl=$asset->baseUrl;
 	<div class="header-top">
 	        <div class="logo">
                         <img src="<?=$baseUrl?>/images/logo.png" alt=""/>
-                        <?php
-                            echo $this->getId();
-                        ?>
 			 </div>
 		     <div class="h_menu4"><!-- start h_menu4 -->
 				<a class="toggleMenu" href="#">Menu</a>
