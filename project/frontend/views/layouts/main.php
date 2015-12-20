@@ -36,6 +36,15 @@ $baseUrl=$asset->baseUrl;
 				<a class="toggleMenu" href="#">Menu</a>
 				<ul class="nav">
                                     <li class="active"><?= Html::a('Strona główna', ['site/index'], ['class' => '']); ?></li>
+                                    <li><?= Html::a('Ligii'); ?>
+                                        <ul>
+                                            <li><?= Html::a("BBVA", ['site/league'], ['class' => '']); ?></li>
+                                            <li><?= Html::a("Bundesliga", ['site/league'], ['class' => '']); ?></li>
+                                            <li><?= Html::a("Ligue 1", ['site/league'], ['class' => '']); ?></li>
+                                            <li><?= Html::a("Premier League", ['site/league'], ['class' => '']); ?></li>
+                                            <li><?= Html::a("Seria A", ['site/league'], ['class' => '']); ?></li>
+                                        </ul>
+                                    </li>
                                     <li><?= Html::a('O nas', ['site/about'], ['class' => '']); ?></li>
                                     <li><?= Html::a('Kontakt', ['site/contact'], ['class' => '']); ?></li>
 <?php

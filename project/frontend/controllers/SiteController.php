@@ -210,4 +210,16 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+    
+    public function actionLeague() {
+        return $this->render('league');
+    }
+    
+    public function actionTeam() {
+        return $this->render('team');
+    }
+    
+    public function actionPlayer() {
+        return $this->render('player');
+    }
 }
