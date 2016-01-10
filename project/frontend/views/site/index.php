@@ -9,7 +9,7 @@ $baseUrl=$asset->baseUrl;
 $this->title = 'Worki';
 
 ?>
-	 <<div class="main">
+	 <div class="main">
 	     <div class="wrap">
 	 	   <h2 class="m_1">dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</h2>
 	 	     <div class="content-top">
@@ -44,8 +44,8 @@ $this->title = 'Worki';
 	 	    	<div class="col_1_of_middle span_1_of_middle">
 	 	    		<img src="<?=$baseUrl?>/images/mac_img1.png" alt=""/>
 	 	    	</div>
-				<div class="col_1_of_middle span_1_of_middle">
-				   <h3>diam nonummy nibh euismod tincidunt ut laoreet dolore</h3>
+                        <div class="col_1_of_middle span_1_of_middle">
+                            <h3>diam nonummy nibh euismod tincidunt ut laoreet dolore</h3>
 	 	    	   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie</p>
 	 	    	   <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam</p>
 	 	    	   <div class="btn"><a href="#">Learn More</a></div>
@@ -88,7 +88,7 @@ $this->title = 'Worki';
                          <a class="popup-with-zoom-anim" href="#small-dialog3"> <div class="info">Read More</div></a>
 		                     <div id="small-dialog3" class="mfp-hide">
 							   <div class="pop_up2">
-							   	  <img src="<?=$baseUrl?>/images/pic3.jpg"/ alt=""/>
+							   	  <img src="<?=$baseUrl?>/images/pic3.jpg" alt=""/>
 							   	  <h3 class="m_4"><a href="#">augue duis dolore te feugait</a></h3>
 				                  <p class="m_5">Photography</p>
 							   </div>

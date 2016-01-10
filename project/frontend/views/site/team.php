@@ -8,6 +8,8 @@ $this->title = 'Drużyny';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+<div class="main">
+    <div class="wrap">
 <div class="site-team">
     <h1><?= Html::encode($this->title) ?></h1>
     
@@ -32,4 +34,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <ul>
         <li><?= Html::a('Robert Lewandowski', ['site/player']); ?></li>
     </ul>
+</div>
+    </div>
 </div>

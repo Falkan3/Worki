@@ -8,7 +8,9 @@ $this->title = 'Zawodnicy';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="site-player">
+<div class="main">
+    <div class="wrap">
+        <div class="site-league">
     <h1><?= Html::encode($this->title) ?></h1>
     
     <h2>Informacje</h2>
@@ -23,4 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <tr><th>Zdjęcie</th><td>nie mam</td></tr>
         <tr><th>Ilość strzelonych goli w lidze</th><td>mniej niż Aubameyang <3</td></tr>
     </table>
+        </div>
+    </div>
 </div>

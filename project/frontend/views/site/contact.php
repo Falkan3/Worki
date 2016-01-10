@@ -11,7 +11,9 @@ use yii\captcha\Captcha;
 $this->title = 'Kontakt';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact">
+<div class="main">
+    <div class="wrap">
+		<div class="site-contact">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
@@ -42,4 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
+</div>
+	</div>
 </div>

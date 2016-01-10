@@ -221,6 +221,8 @@ body{
 /*--content--*/
 .main{
 	background:#fff;
+	padding-top:25px;
+	padding-bottom:25px;
 }
 .col_1_of_4:first-child {
 	margin-left: 0;
