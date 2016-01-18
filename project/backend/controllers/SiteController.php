@@ -20,22 +20,36 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
+				'only' => ['logout', 'signup', 'about'],
                 'rules' => [
                     [
-                        'actions' => ['login', 'error'],
+                        'actions' => ['signup'],
                         'allow' => true,
+						'roles' => ['?'],
                     ],
                     [
+<<<<<<< HEAD
                         'actions' => ['logout', 'index', 'stadiony', 'kluby', 'zawodnicy', 'terminarz', 'mecz'],
+=======
+                        'actions' => ['logout'],
+>>>>>>> aae35b00098a6f337512243ec95f5902ec0cd7b3
                         'allow' => true,
                         'roles' => ['@'],
                     ],
+					[
+					   'actions' => ['about'],
+					   'allow' => true,
+					   'roles' => ['@'],
+					   'matchCallback' => function ($rule, $action) {
+						   return User::isUserAdmin(Yii::$app->user->identity->username);
+						}
+					],
                 ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    //'logout' => ['post'],
                 ],
             ],
         ];
@@ -65,7 +79,7 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        if ($model->load(Yii::$app->request->post()) && $model->loginAdmin()) {
             return $this->goBack();
         } else {
             return $this->render('login', [
