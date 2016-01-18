@@ -26,7 +26,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'stadiony', 'kluby', 'zawodnicy', 'terminarz', 'mecz'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -79,5 +79,26 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+    
+    public function actionStadiony()
+    {
+        return $this->render('stadiony');
+    }
+    
+    public function actionKluby() {
+        return $this->render('index');
+    }
+    
+    public function actionZawodnicy() {
+        return $this->render('index');
+    }
+    
+    public function actionTerminarz() {
+        return $this->render('index');
+    }
+    
+    public function actionMecz() {
+        return $this->render('index');
     }
 }

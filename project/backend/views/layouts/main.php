@@ -40,6 +40,12 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+        $menuItems[] = ['label' => 'Stadiony', 'url' => ['/site/stadiony']];
+        $menuItems[] = ['label' => 'Kluby', 'url' => ['/site/kluby']];
+        $menuItems[] = ['label' => 'Zawodnicy', 'url' => ['/site/zawodnicy']];
+        $menuItems[] = ['label' => 'Terminarz', 'url' => ['/site/terminarz']];
+        $menuItems[] = ['label' => 'Mecz', 'url' => ['/site/mecz']];
+        
         $menuItems[] = [
             'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
             'url' => ['/site/logout'],
