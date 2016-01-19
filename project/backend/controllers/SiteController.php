@@ -7,6 +7,7 @@ use yii\web\Controller;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
 
+use backend\models\StadionList;
 /**
  * Site controller
  */
@@ -28,11 +29,7 @@ class SiteController extends Controller
 						'roles' => ['?'],
                     ],
                     [
-<<<<<<< HEAD
                         'actions' => ['logout', 'index', 'stadiony', 'kluby', 'zawodnicy', 'terminarz', 'mecz'],
-=======
-                        'actions' => ['logout'],
->>>>>>> aae35b00098a6f337512243ec95f5902ec0cd7b3
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -97,7 +94,8 @@ class SiteController extends Controller
     
     public function actionStadiony()
     {
-        return $this->render('stadiony');
+        $model = new StadionList();
+        return $this->render('stadiony', ['model' => $model]);
     }
     
     public function actionKluby() {
