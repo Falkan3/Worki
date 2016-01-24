@@ -28,7 +28,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'Worki',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -40,11 +40,11 @@ AppAsset::register($this);
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = ['label' => 'Stadiony', 'url' => ['/site/stadiony']];
-        $menuItems[] = ['label' => 'Kluby', 'url' => ['/site/kluby']];
-        $menuItems[] = ['label' => 'Zawodnicy', 'url' => ['/site/zawodnicy']];
-        $menuItems[] = ['label' => 'Terminarz', 'url' => ['/site/terminarz']];
-        $menuItems[] = ['label' => 'Mecz', 'url' => ['/site/mecz']];
+        $menuItems[] = ['label' => 'Stadiony', 'url' => ['/stadion/index']];
+        $menuItems[] = ['label' => 'Kluby', 'url' => ['/klub/index']];
+        $menuItems[] = ['label' => 'Zawodnicy', 'url' => ['/zawodnik/index']];
+        $menuItems[] = ['label' => 'Terminarz', 'url' => ['/terminarz/index']];
+        $menuItems[] = ['label' => 'Mecz', 'url' => ['/mecz/index']];
         
         $menuItems[] = [
             'label' => 'Logout (' . Yii::$app->user->identity->username . ')',

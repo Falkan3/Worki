@@ -1,21 +1,58 @@
 <?php
-namespace backend\models;
 
-use yii\base\Model;
+namespace app\models;
+
+use Yii;
 
 /**
- * List of stadions
+ * This is the model class for table "liga".
+ *
+ * @property integer $id_ligi
+ * @property string $nazwa_ligi
+ * @property string $kraj
+ * @property string $logo
+ *
+ * @property Klub[] $klubs
  */
-class Liga extends Model
+class Liga extends \yii\db\ActiveRecord
 {
-    public $league;
-
-    public static function getAllLeaguesIdAndNames() {
-        $connection = \Yii::$app->db;
- 	$command = $connection->createCommand('SELECT id_ligi, nazwa_ligi FROM Liga');
-	$data = $command->queryAll();  
-        //var_dump($data);
-        return $data;
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'liga';
     }
-   
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['nazwa_ligi', 'kraj', 'logo'], 'required'],
+            [['nazwa_ligi', 'kraj', 'logo'], 'string']
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id_ligi' => 'Id Ligi',
+            'nazwa_ligi' => 'Nazwa Ligi',
+            'kraj' => 'Kraj',
+            'logo' => 'Logo',
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getKlubs()
+    {
+        return $this->hasMany(Klub::className(), ['id_ligi' => 'id_ligi']);
+    }
 }
