@@ -25,7 +25,7 @@ class KlubController extends Controller
             ],
         ];
     }
-
+    
     /**
      * Lists all Klub models.
      * @return mixed
