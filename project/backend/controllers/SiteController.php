@@ -23,29 +23,21 @@ class SiteController extends Controller
 				'only' => ['logout', 'signup', 'about'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
+                        'actions' => ['login'],
                         'allow' => true,
-						'roles' => ['?'],
+			'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout', 'index', 'stadiony', 'kluby', 'zawodnicy', 'terminarz', 'mecz'],
+                        'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-					[
-					   'actions' => ['about'],
-					   'allow' => true,
-					   'roles' => ['@'],
-					   'matchCallback' => function ($rule, $action) {
-						   return User::isUserAdmin(Yii::$app->user->identity->username);
-						}
-					],
                 ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    //'logout' => ['post'],
+                    'logout' => ['post'],
                 ],
             ],
         ];
