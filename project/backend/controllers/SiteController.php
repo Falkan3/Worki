@@ -20,7 +20,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-				'only' => ['logout', 'signup', 'about'],
+				'only' => ['logout', 'login', 'index'],
                 'rules' => [
                     [
                         'actions' => ['login'],
@@ -71,7 +71,7 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
-        $this->layout = 'login';
+        $this->layout = 'default';
         $model = new LoginForm();
         
         if ($model->load(Yii::$app->request->post()) && $model->loginAdmin()) {
@@ -88,5 +88,12 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+    
+    public function actionError() {
+        $exception = Yii::$app->errorHandler->exception;
+        if ($exception !== null) {
+            return $this->render('error', ['exception' => $exception]);
+        }
     }
 }

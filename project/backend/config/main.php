@@ -31,5 +31,5 @@ return [
         ],
     ],
     'params' => $params,
-    'layout' => 'admin',
+    'layout' => 'default',
 ];

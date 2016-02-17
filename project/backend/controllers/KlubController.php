@@ -15,6 +15,8 @@ use yii\filters\AccessControl;
  */
 class KlubController extends Controller
 {
+    public $layout = 'admin';
+    
     public function behaviors()
     {
         return [

@@ -2,8 +2,12 @@
 
 namespace backend\controllers;
 
+use yii\filters\AccessControl;
+
 class MeczController extends \yii\web\Controller
 {
+    public $layout = 'admin';
+    
     public function behaviors() {
         return [
             'access' => [
