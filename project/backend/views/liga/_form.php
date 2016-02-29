@@ -6,17 +6,22 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Liga */
 /* @var $form yii\widgets\ActiveForm */
+
+/*
+ * TODO:
+ * - dodawanie plików (weryfikacja czy graficzny, przeniesienie do odpowiedniego folderu i dodanie ściezki)
+ */
 ?>
 
 <div class="liga-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nazwa_ligi')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'nazwa_ligi')->textInput(); ?>
 
-    <?= $form->field($model, 'kraj')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'kraj')->textInput(); ?>
 
-    <?= $form->field($model, 'logo')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'logo')->textInput(); ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -6,9 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Liga */
 
-$this->title = 'Create Liga';
-$this->params['breadcrumbs'][] = ['label' => 'Ligas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Dodaj ligę';
+
 ?>
 <div class="liga-create">
 

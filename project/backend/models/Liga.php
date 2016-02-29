@@ -30,7 +30,7 @@ class Liga extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nazwa_ligi', 'kraj', 'logo'], 'required'],
+            [['nazwa_ligi', 'kraj'], 'required'],
             [['nazwa_ligi', 'kraj', 'logo'], 'string']
         ];
     }

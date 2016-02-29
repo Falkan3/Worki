@@ -5,10 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Liga */
 
-$this->title = 'Update Liga: ' . ' ' . $model->id_ligi;
-$this->params['breadcrumbs'][] = ['label' => 'Ligas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id_ligi, 'url' => ['view', 'id' => $model->id_ligi]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Edytuj ligę: ' . ' ' . $model->id_ligi;
+
 ?>
 <div class="liga-update">
 
