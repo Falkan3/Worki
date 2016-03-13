@@ -32,7 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'nazwa_klubu:ntext',
             'id_ligi',
             'id_stadionu',
-            'logo:ntext',
+            [
+                'attribute' => 'logo',
+                'format' => 'image',
+                'value' => '?r=image/index&id=' . $model->logo,
+            ],
             'trener:ntext',
         ],
     ]) ?>

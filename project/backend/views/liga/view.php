@@ -33,7 +33,7 @@ $this->title = $model->nazwa_ligi;
             [
                 'attribute' => 'logo',
                 'format' => 'image',
-                'value' => '/images/' . $model->logo,
+                'value' => '?r=image/index&id=' . $model->logo,
             ],
         ],
     ]) ?>
