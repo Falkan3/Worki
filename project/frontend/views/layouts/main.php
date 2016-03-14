@@ -13,6 +13,8 @@ use frontend\assets\AppAsset;
 #AppAsset::register($this);
 $asset=frontend\assets\AppAsset::register($this);
 $baseUrl=$asset->baseUrl;
+$controller = Yii::$app->controller;
+$default_controller = Yii::$app->defaultRoute;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
