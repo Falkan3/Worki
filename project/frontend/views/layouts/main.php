@@ -28,6 +28,7 @@ $default_controller = Yii::$app->defaultRoute;
 </head>
 <body>
 <?php $this->beginBody() ?>
+<?php $currentSite = Yii::$app->getRequest()->getQueryParam('r'); ?>
 
 <div class="wrap"> 
 	<div class="header-top">
@@ -37,23 +38,39 @@ $default_controller = Yii::$app->defaultRoute;
 		     <div class="h_menu4"><!-- start h_menu4 -->
 				<a class="toggleMenu" href="#">Menu</a>
 				<ul class="nav">
-                                    <li class="active"><?= Html::a('Strona główna', ['site/index'], ['class' => '']); ?></li>
+                                    <li 
+                                        <?php if($currentSite=="site/index") {echo 'class="active"';} ?>
+                                    ><?= Html::a('Strona główna', ['site/index'], ['class' => '']); ?></li>
                                     <li><?= Html::a('Ligii'); ?>
                                         <ul>
-                                            <li><?= Html::a("BBVA", ['site/league'], ['class' => '']); ?></li>
-                                            <li><?= Html::a("Bundesliga", ['site/league'], ['class' => '']); ?></li>
-                                            <li><?= Html::a("Ligue 1", ['site/league'], ['class' => '']); ?></li>
-                                            <li><?= Html::a("Premier League", ['site/league'], ['class' => '']); ?></li>
-                                            <li><?= Html::a("Seria A", ['site/league'], ['class' => '']); ?></li>
+                                            <?php
+                                            $sql = "SELECT * FROM `liga`";
+                                            $data = Yii::$app->db->CreateCommand($sql)->queryAll();
+                                            foreach($data as $result) {
+                                                echo "<li>";
+                                                echo Html::a($result['nazwa_ligi'], ['site/league', 'id'=>$result['id_ligi']], ['class' => '']);
+                                                echo "</li>";
+                                            }
+                                            ?>
                                         </ul>
                                     </li>
-                                    <li><?= Html::a('O nas', ['site/about'], ['class' => '']); ?></li>
-                                    <li><?= Html::a('Kontakt', ['site/contact'], ['class' => '']); ?></li>
+                                    <li
+                                        <?php if($currentSite=="site/about") {echo 'class="active"';} ?>
+                                    ><?= Html::a('O nas', ['site/about'], ['class' => '']); ?></li>
+                                    <li
+                                        <?php if($currentSite=="site/contact") {echo 'class="active"';} ?>
+                                    ><?= Html::a('Kontakt', ['site/contact'], ['class' => '']); ?></li>
 <?php
 if (Yii::$app->user->isGuest) {
 
-    echo "<li>". Html::a('Logowanie', ['site/login'], ['class' => ''])."</li>";
-    echo "<li>". Html::a('Rejestracja', ['site/signup'], ['class' => ''])."</li>";
+    if($currentSite=="site/login") {echo "<li class=\"active\">". Html::a('Logowanie', ['site/login'], ['class' => ''])."</li>";}
+    else {
+        echo "<li>". Html::a('Logowanie', ['site/login'], ['class' => ''])."</li>";
+    }
+    if($currentSite=="site/signup") {echo "<li class=\"active\">". Html::a('Rejestracja', ['site/signup'], ['class' => ''])."</li>";}
+    else {
+        echo "<li>". Html::a('Rejestracja', ['site/signup'], ['class' => ''])."</li>";
+    }
     } else {
         /*
         $menuItems[] = [

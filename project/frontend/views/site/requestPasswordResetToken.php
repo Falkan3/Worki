@@ -10,6 +10,9 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Token resetowania hasła';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<div class="main">
+    <div class="wrap">
 <div class="site-request-password-reset">
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,3 +32,5 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+    </div>
+    </div>

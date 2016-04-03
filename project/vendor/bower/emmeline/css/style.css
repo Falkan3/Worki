@@ -97,9 +97,11 @@ body{
 .nav li {
     position: relative;
 }
+
 .nav li.active a, .nav li a:hover {
-	border-bottom:10px solid #faa645;
+    border-bottom: 10px solid #faa645;
 }
+
 .nav > li {
     float: left;
 }
@@ -2401,6 +2403,37 @@ span.right_line1 {
 	}
 }
 
+.league_table {
+    text-align: center;
+    font-size: 16px;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: auto;
+    width:70%; 
+    margin-left:15%; 
+    margin-right:15%;
+}
+
+.league_table th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+.league_table th {
+    background-color: #1d7a62;
+    color: #F0f0f0;
+}
+
+h1 {
+    display: block;
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
 
 
 
