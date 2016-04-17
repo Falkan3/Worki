@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Klub */
 
-$this->title = 'Update Klub: ' . ' ' . $model->id_klubu;
+$this->title = 'Edytuj Klub: ' . ' ' . $model->nazwa_klubu;
 $this->params['breadcrumbs'][] = ['label' => 'Klubs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id_klubu, 'url' => ['view', 'id' => $model->id_klubu]];
 $this->params['breadcrumbs'][] = 'Update';

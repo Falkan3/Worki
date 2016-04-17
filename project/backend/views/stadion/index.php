@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\SearchStadion */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Stadions';
+$this->title = 'Stadiony';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="stadion-index">
@@ -16,20 +16,25 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Stadion', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Dodaj Stadion', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
             'id_stadionu',
             'nazwa:ntext',
             'pojemnosc:ntext',
             'rok_wybudowania',
-            'zdjecie:ntext',
+            [
+                'attribute' => 'zdjecie',
+                'format' => 'image',
+                'value' =>  function($data) {
+                                return '?r=image/index&id=' . $data['zdjecie'];
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

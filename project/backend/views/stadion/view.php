@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Stadion */
 
-$this->title = $model->id_stadionu;
+$this->title = $model->nazwa;
 $this->params['breadcrumbs'][] = ['label' => 'Stadions', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_stadionu], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_stadionu], [
+        <?= Html::a('Zapisz', ['update', 'id' => $model->id_stadionu], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Usuń', ['delete', 'id' => $model->id_stadionu], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Czy jesteś pewny że chcesz usunąć ten stadion?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -32,7 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'nazwa:ntext',
             'pojemnosc:ntext',
             'rok_wybudowania',
-            'zdjecie:ntext',
+            [
+                'attribute' => 'zdjecie',
+                'format' => 'image',
+                'value' =>  '?r=image/index&id=' . $model->zdjecie,
+            ],
         ],
     ]) ?>
 

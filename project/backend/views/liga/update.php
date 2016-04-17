@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Liga */
 
-$this->title = 'Edytuj ligę: ' . ' ' . $model->id_ligi;
+$this->title = 'Edytuj ligę: ' . ' ' . $model->nazwa_ligi;
 
 ?>
 <div class="liga-update">

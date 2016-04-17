@@ -31,7 +31,8 @@ class Liga extends \yii\db\ActiveRecord
     {
         return [
             [['nazwa_ligi', 'kraj'], 'required'],
-            [['nazwa_ligi', 'kraj', 'logo'], 'string']
+            [['nazwa_ligi', 'kraj'], 'string'],
+            [['logo'], 'file', 'extensions' => 'png']
         ];
     }
 

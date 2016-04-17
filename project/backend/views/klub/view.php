@@ -2,11 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use app\models\Liga;
+use app\models\Stadion;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Klub */
 
-$this->title = $model->id_klubu;
+$this->title = $model->nazwa_klubu;
 $this->params['breadcrumbs'][] = ['label' => 'Klubs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,11 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_klubu], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_klubu], [
+        <?= Html::a('Edytuj', ['update', 'id' => $model->id_klubu], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Usuń', ['delete', 'id' => $model->id_klubu], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Czy na pewno chcesz usunąć ten klub?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -29,15 +31,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id_klubu',
-            'nazwa_klubu:ntext',
-            'id_ligi',
-            'id_stadionu',
+            'nazwa_klubu',
+            [
+                'attribute' => 'id_ligi',
+                'label' => 'Liga',
+                'value' =>  Liga::find()->where(['id_ligi' => $model->id_ligi])->one()->nazwa_ligi,
+            ],
+            [
+                'attribute' => 'id_stadionu',
+                'label' => 'Stadion',
+                'value' =>  isset($model->id_stadionu) ? Stadion::find()->where(['id_stadionu' => $model->id_stadionu])->one()->nazwa : "Brak",
+            ],
             [
                 'attribute' => 'logo',
                 'format' => 'image',
                 'value' => '?r=image/index&id=' . $model->logo,
             ],
-            'trener:ntext',
+            'trener',
         ],
     ]) ?>
 

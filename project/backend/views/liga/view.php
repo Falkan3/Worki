@@ -18,7 +18,7 @@ $this->title = $model->nazwa_ligi;
         <?= Html::a('Usuń', ['delete', 'id' => $model->id_ligi], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Czy jesteś pewien, że chce usunąć tą ligę?',
+                'confirm' => 'Czy jesteś pewien, że chce usunąć tę ligę?',
                 'method' => 'post',
             ],
         ]) ?>

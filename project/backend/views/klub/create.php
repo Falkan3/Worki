@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Klub */
 
-$this->title = 'Create Klub';
+$this->title = 'Dodaj Klub';
 $this->params['breadcrumbs'][] = ['label' => 'Klubs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

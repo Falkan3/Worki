@@ -12,16 +12,16 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nazwa')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'nazwa')->textInput(); ?>
 
-    <?= $form->field($model, 'pojemnosc')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'pojemnosc')->textInput(); ?>
 
     <?= $form->field($model, 'rok_wybudowania')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'zdjecie')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'zdjecie')->fileInput(); ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Dodaj' : 'Zapisz', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

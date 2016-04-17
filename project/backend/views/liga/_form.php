@@ -21,10 +21,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'kraj')->textInput(); ?>
 
-    <?= $form->field($model, 'logo')->textInput(); ?>
+    <?= $form->field($model, 'logo')->fileInput(); ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Dodaj' : 'Zapisz', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

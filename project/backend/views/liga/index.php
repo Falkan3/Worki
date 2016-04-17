@@ -26,7 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_ligi',
             'nazwa_ligi:ntext',
             'kraj:ntext',
-            'logo',
+            [
+                'attribute' => 'logo',
+                'format' => 'image',
+                'value' =>  function($data) {
+                                return '?r=image/index&id=' . $data['logo'];
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
