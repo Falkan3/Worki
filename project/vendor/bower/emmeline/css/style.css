@@ -2417,12 +2417,25 @@ span.right_line1 {
 
 .league_table th, td {
     padding: 5px;
-    text-align: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.league_table tr {
+    background-color: #F0f0f0;
 }
 
 .league_table th {
     background-color: #1d7a62;
     color: #F0f0f0;
+}
+
+.league_table tr.odd {
+    background-color: #D7DEE0;
+}
+
+.league_table tr.even {
+    background-color: #F0f0f0;
 }
 
 h1 {

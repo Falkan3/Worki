@@ -1,7 +1,6 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Liga */
 
 use yii\helpers\Html;
 
@@ -19,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
             
             <h1><?= Html::encode($this->title) ?></h1>
+            
             <table class="league_table">
                 <tr>
                     <th>Nazwa:</th><th>Kraj:</th><th>Logo:</th>
@@ -26,29 +26,33 @@ $this->params['breadcrumbs'][] = $this->title;
                 <tr>
                     <td><?php echo $data[0]['nazwa_ligi']; ?></td>
                     <td><?php echo $data[0]['kraj']; ?></td>
-                    <td>PLACEHOLDER</td>
+                    <td><img src="?r=image/index&id=<?php echo $data[0]['logo']; ?>"></td>
                 <tr/>
             </table>
             
             <hr>
-            <h2>Tabela wyników</h2>
-            <table>
-                <tr><th>Pozycja</th><th>Nazwa klubu</th><th>Logo</th></tr>
-                <tr><td>1</td><td><?= Html::a('Bayern Monachium', ['site/team']); ?></td><td></td></tr>
-                <tr><td>2</td><td><?= Html::a('Borussia Dortmund', ['site/team']); ?></td><td></td></tr>      
-            </table>
-            <p>
-                <?php
-                    $sql = "SELECT * FROM `liga`";
-                    $data = Yii::$app->db->CreateCommand($sql)->queryAll();
-                    print_r(array(
-                        'data'=>$data,
-                    ));
-                    foreach($data as $result) {
-                        echo $result['id_ligi'].", ".$result['nazwa_ligi'].", ".$result['kraj'], '<br>';
+            <h1>Kluby w lidze: <?php echo $data[0]['nazwa_ligi']; ?></h1>
+            <table class="league_table">
+                <tr>
+                    <th>Pozycja:</th><th>Nazwa klubu:</th><th>Logo:</th>
+                </tr>
+            <?php
+            $sql = "SELECT * FROM `klub` where `id_ligi`=".$id;
+            $data = Yii::$app->db->CreateCommand($sql)->queryAll();
+            
+            foreach($data as $result) {
+                if(count($result)>=1) {
+                    echo "<tr>";
+                        echo "<td>".$result['id_klubu']."</td>";
+                        echo "<td>".Html::a($result['nazwa_klubu'], ['site/team', 'id'=>$result['id_klubu']], ['class' => ''])."</td>";
+                        echo '<td><img src="?r=image/index&id=';
+                        echo $result['logo'].'"></td>';
+                    echo "</tr>";
                     }
-                ?>
-            </p>
+                }
+            ?>
+            </table>
+            
         </div>
     </div>
 </div>

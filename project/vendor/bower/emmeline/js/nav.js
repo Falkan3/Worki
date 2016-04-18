@@ -7,7 +7,7 @@ $(document).ready(function() {
 		if ($(this).next().length > 0) {
 			$(this).addClass("parent");
 		};
-	})
+	});
 	
 	$(".toggleMenu").click(function(e) {
 		e.preventDefault();
@@ -15,7 +15,11 @@ $(document).ready(function() {
 		$(".nav").toggle();
 	});
 	adjustMenu();
-})
+        
+                
+        $(".league_table tr:nth-child(even)").addClass("even");
+        $(".league_table tr:nth-child(odd)").addClass("odd");
+});
 
 $(window).bind('resize orientationchange', function() {
 	//ww = document.body.clientWidth;

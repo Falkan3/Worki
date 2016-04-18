@@ -39,7 +39,7 @@ $default_controller = Yii::$app->defaultRoute;
 				<a class="toggleMenu" href="#">Menu</a>
 				<ul class="nav">
                                     <li 
-                                        <?php if($currentSite=="site/index") {echo 'class="active"';} ?>
+                                        <?php if($currentSite=="site/index" || $currentSite=="") {echo 'class="active"';} ?>
                                     ><?= Html::a('Strona główna', ['site/index'], ['class' => '']); ?></li>
                                     <li><?= Html::a('Ligii'); ?>
                                         <ul>
@@ -54,11 +54,18 @@ $default_controller = Yii::$app->defaultRoute;
                                             ?>
                                         </ul>
                                     </li>
+                                    <?php 
+                                            echo "<li ";
+                                            if($currentSite=="site/team") {echo 'class="active"';}
+                                            echo "/>";
+                                            echo Html::a('Kluby', ['site/team', 'id'=>1], ['class' => '']);
+                                            echo "</li>";
+                                    ?>
                                     <li
-                                        <?php if($currentSite=="site/about") {echo 'class="active"';} ?>
+                                    <?php if($currentSite=="site/about") {echo 'class="active"';} ?>
                                     ><?= Html::a('O nas', ['site/about'], ['class' => '']); ?></li>
                                     <li
-                                        <?php if($currentSite=="site/contact") {echo 'class="active"';} ?>
+                                    <?php if($currentSite=="site/contact") {echo 'class="active"';} ?>
                                     ><?= Html::a('Kontakt', ['site/contact'], ['class' => '']); ?></li>
 <?php
 if (Yii::$app->user->isGuest) {
