@@ -85,7 +85,7 @@ AppAsset::register($this);
                             'url' => ['stadion/index'],
                         ],
                         [
-                            'label' => 'Ligii',
+                            'label' => 'Ligi',
                             'url' => ['liga/index'],
                         ],
                         [
