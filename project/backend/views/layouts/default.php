@@ -1,10 +1,11 @@
 <?php
 
-/* @var $this \yii\web\View */
+/* @var $this View */
 /* @var $content string */
 
 use backend\assets\AppAsset;
 use yii\helpers\Html;
+use yii\web\View;
 
 AppAsset::register($this);
 ?>
@@ -23,7 +24,7 @@ AppAsset::register($this);
 
 <div class="wrap">
     <div class="container">
-            <?= $content ?>
+        <?= $content ?>
     </div>
 </div>
 
