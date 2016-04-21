@@ -211,7 +211,7 @@ class SiteController extends Controller
         ]);
     }
     
-    public function actionLeague($id) {
+    public function actionLeague() {
         return $this->render('league');
     }
     
