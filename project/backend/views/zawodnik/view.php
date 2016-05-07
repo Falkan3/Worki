@@ -1,13 +1,16 @@
 <?php
 
+use app\models\Klub;
+use app\models\Zawodnik;
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Zawodnik */
+/* @var $this View */
+/* @var $model Zawodnik */
 
-$this->title = $model->id_zawodnika;
-$this->params['breadcrumbs'][] = ['label' => 'Zawodniks', 'url' => ['index']];
+$this->title = $model->imie . " " . $model->nazwisko;
+$this->params['breadcrumbs'][] = ['label' => 'Zawodnicy', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="zawodnik-view">
@@ -15,11 +18,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_zawodnika], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_zawodnika], [
+        <?= Html::a('Edytuj', ['update', 'id' => $model->id_zawodnika], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Usuń', ['delete', 'id' => $model->id_zawodnika], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Czy na pewno chcesz usunąć tego zawodnika?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -31,7 +34,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_zawodnika',
             'imie:ntext',
             'nazwisko:ntext',
-            'id_klubu',
+            [
+                'attribute' => 'id_klubu',
+                'label' => 'Klub',
+                'value' =>  isset($model->id_klubu) ? Klub::find()->where(['id_klubu' => $model->id_klubu])->one()->nazwa_klubu : "Brak",
+            ],
             'pozycja:ntext',
             'wzrost',
             'nr_koszulki',

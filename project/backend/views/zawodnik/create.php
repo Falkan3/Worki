@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Zawodnik */
 
-$this->title = 'Create Zawodnik';
-$this->params['breadcrumbs'][] = ['label' => 'Zawodniks', 'url' => ['index']];
+$this->title = 'Dodaj Zawodnika';
+$this->params['breadcrumbs'][] = ['label' => 'Zawodnicy', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="zawodnik-create">

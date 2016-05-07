@@ -35,7 +35,7 @@ class Terminarz extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data', 'godzina', 'home', 'away', 'wynik'], 'required'],
+            [['data', 'godzina', 'home', 'away',], 'required'],
             [['data', 'godzina'], 'safe'],
             [['home', 'away'], 'integer'],
             [['wynik'], 'string'],

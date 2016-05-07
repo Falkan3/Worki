@@ -1,13 +1,17 @@
 <?php
 
-use yii\helpers\Html;
+use app\models\Klub;
+use app\models\SearchZawodnik;
+use yii\data\ActiveDataProvider;
 use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\web\View;
 
-/* @var $this yii\web\View */
-/* @var $searchModel app\models\SearchZawodnik */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $this View */
+/* @var $searchModel SearchZawodnik */
+/* @var $dataProvider ActiveDataProvider */
 
-$this->title = 'Zawodniks';
+$this->title = 'Zawodnicy';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="zawodnik-index">
@@ -16,24 +20,35 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Zawodnik', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Dodaj Zawodnika', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id_zawodnika',
-            'imie:ntext',
-            'nazwisko:ntext',
-            'id_klubu',
-            'pozycja:ntext',
+            'imie',
+            'nazwisko',
+            [
+                'attribute' => 'id_klubu',
+                'label' => 'Klub', 
+                'value' =>  function($data) {
+                                if(isset($data['id_klubu'])) {
+                                    $stadion = Klub::find()->where(['id_klubu' => $data['id_klubu']])->one();
+                                    return $stadion['nazwa_klubu'];
+                                } else {
+                                    return "Brak";
+                                }
+                }
+            ],
+            'pozycja',
+            
+            // będą wyświetlane w view
             // 'wzrost',
             // 'nr_koszulki',
-            // 'zdjecie:ntext',
-            // 'kraj:ntext',
+            // 'zdjecie',
+            // 'kraj',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

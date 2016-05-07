@@ -9,7 +9,7 @@ use app\models\Stadion;
 /* @var $model app\models\Klub */
 
 $this->title = $model->nazwa_klubu;
-$this->params['breadcrumbs'][] = ['label' => 'Klubs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Kluby', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="klub-view">
