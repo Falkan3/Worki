@@ -61,6 +61,20 @@ $default_controller = Yii::$app->defaultRoute;
                                             echo Html::a('Kluby', ['site/team', 'id'=>1], ['class' => '']);
                                             echo "</li>";
                                     ?>
+                                    <?php 
+                                            echo "<li ";
+                                            if($currentSite=="site/player") {echo 'class="active"';}
+                                            echo "/>";
+                                            echo Html::a('Zawodnicy', ['site/player', 'id'=>1], ['class' => '']);
+                                            echo "</li>";
+                                    ?>
+                                    <?php 
+                                            echo "<li ";
+                                            if($currentSite=="site/stadium") {echo 'class="active"';}
+                                            echo "/>";
+                                            echo Html::a('Stadiony', ['site/stadium', 'id'=>1], ['class' => '']);
+                                            echo "</li>";
+                                    ?>
                                     <li
                                     <?php if($currentSite=="site/about") {echo 'class="active"';} ?>
                                     ><?= Html::a('O nas', ['site/about'], ['class' => '']); ?></li>
@@ -88,6 +102,7 @@ if (Yii::$app->user->isGuest) {
         echo "<li>".Html::a('Wyloguj (' . Yii::$app->user->identity->username . ')', ['site/logout'], ['class' => ''])."</li>";
     }
 ?>
+                                    <!--
 					<li><a href="portfolio.html">Example</a>
 						<ul>
 							<li><a href="portfolio.html">Dropdown</a></li>
@@ -95,7 +110,9 @@ if (Yii::$app->user->isGuest) {
 							<li><a href="portfolio.html">People</a></li>
 						</ul>
 					</li>
+                                    -->
 				</ul>
+                                
 			</div><!-- end h_menu4 -->
 			<div class="clear"></div>
 		</div><!-- end header_main4 -->

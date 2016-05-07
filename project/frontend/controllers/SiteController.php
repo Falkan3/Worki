@@ -222,4 +222,12 @@ class SiteController extends Controller
     public function actionPlayer() {
         return $this->render('player');
     }
+    
+    public function actionView_image() {
+        return $this->render('view_image');
+    }
+    
+    public function actionStadium() {
+        return $this->render('stadium');
+    }
 }

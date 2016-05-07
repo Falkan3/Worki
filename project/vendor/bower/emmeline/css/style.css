@@ -2409,10 +2409,7 @@ span.right_line1 {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     border-spacing: 0;
-    width: auto;
-    width:70%; 
-    margin-left:15%; 
-    margin-right:15%;
+    width:100%; 
 }
 
 .league_table th, td {
@@ -2436,6 +2433,10 @@ span.right_line1 {
 
 .league_table tr.even {
     background-color: #F0f0f0;
+}
+
+.img_profile_scaled {
+    max-width: 144px;
 }
 
 h1 {

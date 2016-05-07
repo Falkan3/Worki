@@ -4,23 +4,24 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Zawodnicy';
+$this->title = 'Stadiony';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
     <?php
         $id = Yii::$app->getRequest()->getQueryParam('id');
+        $id_klubu = Yii::$app->getRequest()->getQueryParam('id_klubu');
         try
         {
-            $sql = "SELECT * FROM zawodnik WHERE id_zawodnika=".$id;
-            $zawodnik = Yii::$app->db->CreateCommand($sql)->queryAll();
+            $sql = "SELECT * FROM stadion WHERE id_stadionu=".$id;
+            $stadion = Yii::$app->db->CreateCommand($sql)->queryAll();
         }
         catch(Exception $e)
         {
         }
         try
         {
-            $sql = "SELECT k.nazwa_klubu, k.id_klubu, k.logo FROM klub k WHERE k.id_klubu=".$zawodnik[0]['id_klubu'];
+            $sql = "SELECT k.nazwa_klubu, k.id_klubu, k.logo FROM klub k WHERE k.id_stadionu=".$id;
             $klub = Yii::$app->db->CreateCommand($sql)->queryAll();
         }
         catch(Exception $e)
@@ -35,17 +36,16 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <table class="league_table">
     <tr>
-        <th>ID:</th><th>Imię:</th><th>Nazwisko:</th><th>Klub:</th><th>Pozycja:</th><th>Wzrost:</th><th>Data urodzenia:</th><th>Kraj pochodzenia</th><th>Zdjęcie:</th>
+        <th>ID:</th><th>Nazwa:</th><th>Klub:</th><th>Pojemność:</th><th>Rok wybudowania:</th><th>Zdjęcie:</th>
     </tr>
     <?php          
-        if(count($zawodnik)>=1) {
+        if(count($stadion)>=1) {
             echo "<tr>";
-                echo "<td>".$zawodnik[0]['id_zawodnika']."</td>";
-                echo "<td>".$zawodnik[0]['imie']."</td>";
-                echo "<td>".$zawodnik[0]['nazwisko']."</td>";
+                echo "<td>".$stadion[0]['id_stadionu']."</td>";
+                echo "<td>".$stadion[0]['nazwa']."</td>";
+                
                 if(isset($klub[0]['nazwa_klubu']))
                 {
-                    #echo "<td>".Html::a($klub[0]['nazwa_klubu'], ['site/team', 'id'=>$zawodnik[0]['id_klubu']], ['class' => ''])."</td>";
                     $src = '?r=image/index&id='.$klub[0]['logo'];
                     echo "<td>".Html::a(Html::img( $src, ['class' => '', 'title' => $klub[0]['nazwa_klubu'], 'alt' => $klub[0]['nazwa_klubu']] ), ['site/team', 'id'=>$klub[0]['id_klubu']], ['class' => ''])."</td>";
                 }
@@ -53,15 +53,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 {
                     echo '<td>BRAK DANYCH O KLUBIE</td>';
                 }
-                echo "<td>".$zawodnik[0]['pozycja']."</td>";
-                echo "<td>".$zawodnik[0]['wzrost']." cm"."</td>";
-                echo "<td>".$zawodnik[0]['data_ur']."</td>";
-                echo "<td>".$zawodnik[0]['kraj']."</td>";
-                if(isset($zawodnik[0]['zdjecie']))
+                
+                echo "<td>".$stadion[0]['pojemnosc']."</td>";
+                echo "<td>".$stadion[0]['rok_wybudowania']."</td>";
+                
+                if(isset($stadion[0]['zdjecie']))
                 {
-                    #echo '" class="img_profile_scaled"></td>';
-                    $src = '?r=image/index&id='.$zawodnik[0]['zdjecie'];
-                    echo "<td>".Html::a(Html::img( $src, ['class' => 'img_profile_scaled', 'title' => $zawodnik[0]['nazwisko'], 'alt' => $zawodnik[0]['nazwisko']] ), ['site/view_image', 'src'=>$src], ['class' => ''])."</td>";
+                    $src = '?r=image/index&id='.$stadion[0]['zdjecie'];
+                    echo "<td>".Html::a(Html::img( $src, ['class' => 'img_profile_scaled', 'title' => $stadion[0]['nazwa'], 'alt' => $stadion[0]['nazwa']] ), ['site/view_image', 'src'=>$src], ['class' => ''])."</td>";
                 }
                 else
                 {

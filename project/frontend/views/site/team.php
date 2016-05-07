@@ -8,19 +8,32 @@ $this->title = 'Klub';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="main">
-    <div class="wrap">
-<div class="site-team">
-    
     <?php
         $id = Yii::$app->getRequest()->getQueryParam('id');
-        $sql = "SELECT * FROM `klub` where `id_klubu`=".$id;
-        $data = Yii::$app->db->CreateCommand($sql)->queryAll();
-        #$sql = "select l.nazwa_ligi from liga l inner join klub k on l.id_ligi=k.id_ligi where l.id_ligi=".$data[0]['id_ligi']." LIMIT 1;";
-        $sql = "SELECT l.nazwa_ligi FROM liga l WHERE l.id_ligi=".$data[0]['id_ligi'];
-        $liga = Yii::$app->db->CreateCommand($sql)->queryAll();
-        $sql = "SELECT * FROM zawodnik WHERE id_klubu=".$id;
-        $zawodnicy = Yii::$app->db->CreateCommand($sql)->queryAll();
+        try
+        {
+            $sql = "SELECT * FROM `klub` where `id_klubu`=".$id;
+            $data = Yii::$app->db->CreateCommand($sql)->queryAll();
+        }
+        catch(Exception $e)
+        {
+        }
+        try
+        {
+            $sql = "SELECT l.nazwa_ligi, l.logo FROM liga l WHERE l.id_ligi=".$data[0]['id_ligi'];
+            $liga = Yii::$app->db->CreateCommand($sql)->queryAll();
+        }
+        catch(Exception $e)
+        {
+        }
+        try
+        {
+            $sql = "SELECT * FROM zawodnik WHERE id_klubu=".$id;
+            $zawodnicy = Yii::$app->db->CreateCommand($sql)->queryAll();
+        }
+        catch(Exception $e)
+        {
+        }
         try
         {
             $sql = "SELECT nazwa FROM stadion WHERE id_stadionu=".$data[0]['id_stadionu'];
@@ -28,10 +41,12 @@ $this->params['breadcrumbs'][] = $this->title;
         }
         catch(Exception $e)
         {
-        }    
-          
-        
+        }          
     ?>
+
+<div class="main">
+    <div class="wrap">
+<div class="site-team">
     
     <h1><?= Html::encode($this->title) ?></h1>
             
@@ -40,13 +55,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 <th>Pozycja:</th><th>Nazwa klubu:</th><th>Logo:</th><th>Liga</th><th>Trener</th><th>Stadion</th>
             </tr>
         <?php
-            if(count($data[0])>=1) {
+            if(count($data)>=1) {
                 echo "<tr>";
                     echo "<td>".$data[0]['id_klubu']."</td>";
                     echo "<td>".$data[0]['nazwa_klubu']."</td>";
-                    echo '<td><img src="?r=image/index&id=';
-                    echo $data[0]['logo'].'"></td>';
-                    echo "<td>".Html::a($liga[0]['nazwa_ligi'], ['site/league', 'id'=>$data[0]['id_ligi']], ['class' => ''])."</td>";
+                    $src = '?r=image/index&id='.$data[0]['logo'];
+                    echo '<td>'.Html::img( $src, ['class' => ''] ).'</td>';                   
+                    $src = '?r=image/index&id='.$liga[0]['logo'];
+                    echo "<td>".Html::a(Html::img( $src, ['class' => '', 'title' => $liga[0]['nazwa_ligi'], 'alt' => $liga[0]['nazwa_ligi']] ), ['site/league', 'id'=>$data[0]['id_ligi']], ['class' => ''])."</td>";                  
                     echo "<td>".$data[0]['trener']."</td>";
                     if(isset($stadion))
                     {
