@@ -32,13 +32,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="wrap">
         <div class="site-league">
     <h1><?= Html::encode($this->title) ?></h1>
-    
-    <table class="league_table">
+
+    <?php          
+    if(isset($zawodnik) && count($zawodnik)>=1) 
+    {
+    echo '<table class="league_table">
     <tr>
         <th>ID:</th><th>Imię:</th><th>Nazwisko:</th><th>Klub:</th><th>Pozycja:</th><th>Wzrost:</th><th>Data urodzenia:</th><th>Kraj pochodzenia</th><th>Zdjęcie:</th>
-    </tr>
-    <?php          
-        if(count($zawodnik)>=1) {
+    </tr>';
             echo "<tr>";
                 echo "<td>".$zawodnik[0]['id_zawodnika']."</td>";
                 echo "<td>".$zawodnik[0]['imie']."</td>";
@@ -64,13 +65,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     echo "<td>".Html::a(Html::img( $src, ['class' => 'img_profile_scaled', 'title' => $zawodnik[0]['nazwisko'], 'alt' => $zawodnik[0]['nazwisko']] ), ['site/view_image', 'src'=>$src], ['class' => ''])."</td>";
                 }
                 else
-                {
-                    echo '<td>BRAK ZDJĘCIA</td>';
+                {   
+                    $src = '?r=image/index&id=brak_zawodnika.png';
+                    echo '<td>'.Html::img( $src, ['class' => 'img_profile_scaled', 'title' => 'Brak zdjęcia zawodnika', 'alt' => 'Brak zdjęcia zawodnika'] ).'</td>';
                 }
-            echo "</tr>";
+            echo "</tr>
+            </table>";
             }
     ?>
-    </table>
     
     
     

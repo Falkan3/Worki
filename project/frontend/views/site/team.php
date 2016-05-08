@@ -3,8 +3,10 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\base\DynamicModel;
+use yii\bootstrap\ActiveForm;
 
-$this->title = 'Klub';
+$this->title = 'Kluby';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -36,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
         }
         try
         {
-            $sql = "SELECT nazwa FROM stadion WHERE id_stadionu=".$data[0]['id_stadionu'];
+            $sql = "SELECT nazwa, zdjecie FROM stadion WHERE id_stadionu=".$data[0]['id_stadionu'];
             $stadion = Yii::$app->db->CreateCommand($sql)->queryAll();   
         }
         catch(Exception $e)
@@ -49,14 +51,30 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-team">
     
     <h1><?= Html::encode($this->title) ?></h1>
-            
-        <table class="league_table">
+    <?php
+    /*
+        <?php
+            $model = new \yii\base\DynamicModel(['searchid']);
+            $model->addRule(['searchid'], 'integer');
+        ?>
+        <?php $form = ActiveForm::begin([
+            'method' => 'post',
+        ]); ?>
+
+        <?= $form->field($model, 'searchid')->textinput(['rows' => 1, 'style'=>'width:20%; margin-right:5px;'])->label('Szukaj po identyfikatorze') ?>
+        <?= Html::submitButton('Szukaj', ['class' => 'btn btn-primary', 'style' => 'margin-top:0; margin-bottom:10px;']) ?>
+   
+        <?php ActiveForm::end() ?>
+    */
+    ?>
+        <?php
+        if(isset($data) && count($data)>=1) 
+        {           
+        echo '<table class="league_table">
             <tr>
                 <th>Pozycja:</th><th>Nazwa klubu:</th><th>Logo:</th><th>Liga</th><th>Trener</th><th>Stadion</th>
             </tr>
-        <?php
-            if(count($data)>=1) {
-                echo "<tr>";
+            <tr>';
                     echo "<td>".$data[0]['id_klubu']."</td>";
                     echo "<td>".$data[0]['nazwa_klubu']."</td>";
                     $src = '?r=image/index&id='.$data[0]['logo'];
@@ -66,35 +84,46 @@ $this->params['breadcrumbs'][] = $this->title;
                     echo "<td>".$data[0]['trener']."</td>";
                     if(isset($stadion))
                     {
-                        echo "<td>".Html::a($stadion[0]['nazwa'], ['site/stadium', 'id'=>$data[0]['id_stadionu']], ['class' => ''])."</td>";
+                        if(isset($stadion[0]['zdjecie']))
+                        {
+                            $src = '?r=image/index&id='.$stadion[0]['zdjecie'];
+                            echo "<td>".Html::a(Html::img( $src, ['class' => 'img_profile_scaled', 'title' => $stadion[0]['nazwa'], 'alt' => $stadion[0]['nazwa']] ), ['site/stadium', 'id'=>$data[0]['id_stadionu']], ['class' => ''])."</td>";
+                        }
+                        else
+                        {
+                            $src = '?r=image/index&id=brak_stadionu.png';
+                            echo "<td>".Html::a(Html::img( $src, ['class' => 'img_profile_scaled', 'title' => $stadion[0]['nazwa'], 'alt' => $stadion[0]['nazwa']] ), ['site/stadium', 'id'=>$data[0]['id_stadionu']], ['class' => ''])."</td>";
+                        }
                     }
                     else
                     {
                         echo "<td>"."BRAK DANYCH"."</td>";
                     }
-                echo "</tr>";
+                echo "</tr>
+                </table>";
                 }
         ?>
-        </table>
-    <h1>Zawodnicy</h1>
+<?php
+    if(isset($zawodnicy) && count($zawodnicy)>=1)
+    {
+    echo '<h1>Zawodnicy</h1>
     
     <table class="league_table">
     <tr>
         <!--<th>ID:</th><th>Imię:</th><th>Nazwisko:</th><th>Klub:</th><th>Pozycja:</th><th>Wzrost:</th><th>Data urodzenia:</th><th>Zdjęcie:</th><th>Kraj pochodzenia</th>-->
         <th>ID:</th><th>Imię:</th><th>Nazwisko:</th>
-    </tr>
-    <?php          
-        foreach($zawodnicy as $result) {
-        if(count($result)>=1) {
+    </tr>';
+        foreach($zawodnicy as $result) 
+        {
             echo "<tr>";
                 echo "<td>".Html::a($result['id_zawodnika'], ['site/player', 'id'=>$result['id_zawodnika']], ['class' => ''])."</td>";
                 echo "<td>".$result['imie']."</td>";
                 echo "<td>".$result['nazwisko']."</td>";
-            echo "</tr>";
-            }
+            echo "</tr>";           
         }
+        echo "</table>";
+    }
     ?>
-    </table>
     
 </div>
     </div>

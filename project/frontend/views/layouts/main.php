@@ -58,21 +58,21 @@ $default_controller = Yii::$app->defaultRoute;
                                             echo "<li ";
                                             if($currentSite=="site/team") {echo 'class="active"';}
                                             echo "/>";
-                                            echo Html::a('Kluby', ['site/team', 'id'=>1], ['class' => '']);
+                                            echo Html::a('Kluby', ['site/team'], ['class' => '']);
                                             echo "</li>";
                                     ?>
                                     <?php 
                                             echo "<li ";
                                             if($currentSite=="site/player") {echo 'class="active"';}
                                             echo "/>";
-                                            echo Html::a('Zawodnicy', ['site/player', 'id'=>1], ['class' => '']);
+                                            echo Html::a('Zawodnicy', ['site/player'], ['class' => '']);
                                             echo "</li>";
                                     ?>
                                     <?php 
                                             echo "<li ";
                                             if($currentSite=="site/stadium") {echo 'class="active"';}
                                             echo "/>";
-                                            echo Html::a('Stadiony', ['site/stadium', 'id'=>1], ['class' => '']);
+                                            echo Html::a('Stadiony', ['site/stadium'], ['class' => '']);
                                             echo "</li>";
                                     ?>
                                     <li

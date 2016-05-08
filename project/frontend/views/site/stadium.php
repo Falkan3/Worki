@@ -33,13 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="wrap">
         <div class="site-league">
     <h1><?= Html::encode($this->title) ?></h1>
-    
-    <table class="league_table">
-    <tr>
-        <th>ID:</th><th>Nazwa:</th><th>Klub:</th><th>Pojemność:</th><th>Rok wybudowania:</th><th>Zdjęcie:</th>
-    </tr>
-    <?php          
-        if(count($stadion)>=1) {
+<?php          
+    if(isset($stadion) && count($stadion)>=1) 
+    {   
+        echo '<table class="league_table">
+        <tr>
+            <th>ID:</th><th>Nazwa:</th><th>Klub:</th><th>Pojemność:</th><th>Rok wybudowania:</th><th>Zdjęcie:</th>
+        </tr>';
             echo "<tr>";
                 echo "<td>".$stadion[0]['id_stadionu']."</td>";
                 echo "<td>".$stadion[0]['nazwa']."</td>";
@@ -64,12 +64,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
                 else
                 {
-                    echo '<td>BRAK ZDJĘCIA</td>';
+                    $src = '?r=image/index&id=brak_stadionu.png';
+                    echo '<td>'.Html::img( $src, ['class' => 'img_profile_scaled', 'title' => 'Brak zdjęcia stadionu', 'alt' => 'Brak zdjęcia stadionu'] ).'</td>';
                 }
-            echo "</tr>";
+            echo "</tr>
+            </table>";
             }
     ?>
-    </table>
     
     
     
