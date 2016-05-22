@@ -80,10 +80,9 @@ $this->params['breadcrumbs'][] = $this->title;
     {   
         echo '<table class="league_table">
         <tr>
-            <th>ID:</th><th>Nazwa:</th><th>Klub:</th><th>Pojemność:</th><th>Rok wybudowania:</th><th>Zdjęcie:</th>
+            <th>Nazwa:</th><th>Klub:</th><th>Pojemność:</th><th>Rok wybudowania:</th><th>Zdjęcie:</th>
         </tr>';
             echo "<tr>";
-                echo "<td>".$stadion[0]['id_stadionu']."</td>";
                 echo "<td>".$stadion[0]['nazwa']."</td>";
                 
                 if(isset($klub[0]['nazwa_klubu']))

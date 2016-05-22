@@ -92,16 +92,22 @@ $this->params['breadcrumbs'][] = $this->title;
         {           
         echo '<table class="league_table">
             <tr>
-                <th>Pozycja:</th><th>Nazwa klubu:</th><th>Logo:</th><th>Liga</th><th>Trener</th><th>Stadion</th>
+                <th>Nazwa klubu:</th><th>Logo:</th><th>Liga</th><th>Trener</th><th>Stadion</th>
             </tr>
             <tr>';
-                    echo "<td>".$data[0]['id_klubu']."</td>";
                     echo "<td>".$data[0]['nazwa_klubu']."</td>";
                     $src = '?r=image/index&id='.$data[0]['logo'];
                     echo '<td>'.Html::img( $src, ['class' => ''] ).'</td>';                   
                     $src = '?r=image/index&id='.$liga[0]['logo'];
                     echo "<td>".Html::a(Html::img( $src, ['class' => '', 'title' => $liga[0]['nazwa_ligi'], 'alt' => $liga[0]['nazwa_ligi']] ), ['site/league', 'id'=>$data[0]['id_ligi']], ['class' => ''])."</td>";                  
-                    echo "<td>".$data[0]['trener']."</td>";
+                    if(isset($data[0]['trener']))
+                    {
+                        echo "<td>".$data[0]['trener']."</td>";
+                    }
+                    else
+                    {
+                        echo "<td>Brak danych</td>";
+                    }
                     if(isset($stadion))
                     {
                         if(isset($stadion[0]['zdjecie']))
@@ -131,12 +137,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <table class="league_table">
     <tr>
         <!--<th>ID:</th><th>Imię:</th><th>Nazwisko:</th><th>Klub:</th><th>Pozycja:</th><th>Wzrost:</th><th>Data urodzenia:</th><th>Zdjęcie:</th><th>Kraj pochodzenia</th>-->
-        <th>ID:</th><th>Imię:</th><th>Nazwisko:</th><th>Info:</th>
+        <th>Imię:</th><th>Nazwisko:</th><th>Info:</th>
     </tr>';
         foreach($zawodnicy as $result) 
         {
             echo "<tr>";
-                echo "<td>".$result['id_zawodnika']."</td>";
                 echo "<td>".$result['imie']."</td>";
                 echo "<td>".$result['nazwisko']."</td>";
                 $src = '?r=image/index&id=info.png';

@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h1>Kluby w lidze: <?php echo $data[0]['nazwa_ligi']; ?></h1>
             <table class="league_table">
                 <tr>
-                    <th>Pozycja:</th><th>Nazwa klubu:</th><th>Logo:</th>
+                    <th>Nazwa klubu:</th><th>Logo:</th>
                 </tr>
             <?php
             $sql = "SELECT * FROM `klub` where `id_ligi`=".$id;
@@ -53,7 +53,6 @@ $this->params['breadcrumbs'][] = $this->title;
             foreach($data as $result) {
                 if(count($result)>=1) {
                     echo "<tr>";
-                        echo "<td>".$result['id_klubu']."</td>";
                         echo "<td>".Html::a($result['nazwa_klubu'], ['site/team', 'id'=>$result['id_klubu']], ['class' => ''])."</td>";
                         if(isset($result['logo']))
                         {

@@ -74,10 +74,9 @@ $this->params['breadcrumbs'][] = $this->title;
     {
     echo '<table class="league_table">
     <tr>
-        <th>ID:</th><th>Imię:</th><th>Nazwisko:</th><th>Klub:</th><th>Pozycja:</th><th>Wzrost:</th><th>Data urodzenia:</th><th>Kraj pochodzenia</th><th>Zdjęcie:</th>
+        <th>Imię:</th><th>Nazwisko:</th><th>Klub:</th><th>Pozycja:</th><th>Wzrost:</th><th>Data urodzenia:</th><th>Kraj pochodzenia</th><th>Zdjęcie:</th>
     </tr>';
             echo "<tr>";
-                echo "<td>".$zawodnik[0]['id_zawodnika']."</td>";
                 echo "<td>".$zawodnik[0]['imie']."</td>";
                 echo "<td>".$zawodnik[0]['nazwisko']."</td>";
                 if(isset($klub[0]['nazwa_klubu']))
