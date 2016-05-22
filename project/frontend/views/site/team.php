@@ -10,12 +10,28 @@ $this->title = 'Kluby';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+    <?php if(isset($_POST["DynamicModel"]))
+        {
+            $temp = $_POST["DynamicModel"];
+            $var = $temp["searchname"];
+        }
+    ?>
+
     <?php
-        $id = Yii::$app->getRequest()->getQueryParam('id');
         try
         {
-            $sql = "SELECT * FROM `klub` where `id_klubu`=".$id;
-            $data = Yii::$app->db->CreateCommand($sql)->queryAll();
+            if(isset($var))
+            {
+                $sql= "SELECT * FROM `klub` where `nazwa_klubu` LIKE '%".$var."%'";
+                $data = Yii::$app->db->CreateCommand($sql)->queryAll();
+            }
+            else
+            {
+                $id = Yii::$app->getRequest()->getQueryParam('id');
+                $sql = "SELECT * FROM `klub` where `id_klubu`=".$id;
+                $data = Yii::$app->db->CreateCommand($sql)->queryAll();
+            }
+            
         }
         catch(Exception $e)
         {
@@ -30,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
         }
         try
         {
-            $sql = "SELECT * FROM zawodnik WHERE id_klubu=".$id;
+            $sql = "SELECT * FROM zawodnik WHERE id_klubu=".$data[0]['id_klubu'];
             $zawodnicy = Yii::$app->db->CreateCommand($sql)->queryAll();
         }
         catch(Exception $e)
@@ -52,21 +68,25 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <h1><?= Html::encode($this->title) ?></h1>
     <?php
-    /*
-        <?php
-            $model = new \yii\base\DynamicModel(['searchid']);
-            $model->addRule(['searchid'], 'integer');
-        ?>
-        <?php $form = ActiveForm::begin([
-            'method' => 'post',
-        ]); ?>
 
-        <?= $form->field($model, 'searchid')->textinput(['rows' => 1, 'style'=>'width:20%; margin-right:5px;'])->label('Szukaj po identyfikatorze') ?>
-        <?= Html::submitButton('Szukaj', ['class' => 'btn btn-primary', 'style' => 'margin-top:0; margin-bottom:10px;']) ?>
-   
-        <?php ActiveForm::end() ?>
-    */
+        $model = new \yii\base\DynamicModel(['searchname']);
+        $model->addRule(['searchname'], 'string');
     ?>
+    <?php $form = ActiveForm::begin([
+        'method' => 'post',
+    ]); ?>
+    <table width="100%">
+        <tr>
+            <td width="90%">
+                <?= $form->field($model, 'searchname')->textinput(['rows' => 1, 'style'=>'margin-right:5px;'])->label('Szukaj po nazwie') ?>
+            </td>
+            <td width="10%">
+                <?= Html::submitButton('Szukaj', ['class' => 'btn btn-primary', 'style' => 'margin-top:22px; margin-bottom:0;']) ?>
+            </td>                         
+        </tr>
+    </table>
+    <?php ActiveForm::end() ?> 
+    
         <?php
         if(isset($data) && count($data)>=1) 
         {           
@@ -111,14 +131,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <table class="league_table">
     <tr>
         <!--<th>ID:</th><th>Imię:</th><th>Nazwisko:</th><th>Klub:</th><th>Pozycja:</th><th>Wzrost:</th><th>Data urodzenia:</th><th>Zdjęcie:</th><th>Kraj pochodzenia</th>-->
-        <th>ID:</th><th>Imię:</th><th>Nazwisko:</th>
+        <th>ID:</th><th>Imię:</th><th>Nazwisko:</th><th>Info:</th>
     </tr>';
         foreach($zawodnicy as $result) 
         {
             echo "<tr>";
-                echo "<td>".Html::a($result['id_zawodnika'], ['site/player', 'id'=>$result['id_zawodnika']], ['class' => ''])."</td>";
+                echo "<td>".$result['id_zawodnika']."</td>";
                 echo "<td>".$result['imie']."</td>";
                 echo "<td>".$result['nazwisko']."</td>";
+                $src = '?r=image/index&id=info.png';
+                echo "<td>".Html::a(Html::img( $src, ['class' => 'img_profile_scaled_little', 'title' => "Info", 'alt' => "Info"] ), ['site/player', 'id'=>$result['id_zawodnika']], ['class' => ''])."</td>";
             echo "</tr>";           
         }
         echo "</table>";

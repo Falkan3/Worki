@@ -20,13 +20,23 @@ $src = Yii::$app->getRequest()->getQueryParam('src');
                             <?php 
                                 if(isset($src))
                                 {
-                                    echo '<img src="'.$src.'"/>';
+                                    echo '<img src="'.$src.'" style="max-height: 100%; max-width: 100%;" />';
                                 }
                                 else
                                 {
                                     echo 'Błąd';
                                 }
-                            ?>                        
+                            ?>
+                            <script src="http://code.jquery.com/jquery-latest.js"></script>
+                            <script type="text/javascript" language="JavaScript">
+                              function set_body_height() { // set body height = window height
+                                $('body').height($(window).height());
+                              }
+                              $(document).ready(function() {
+                                $(window).bind('resize', set_body_height);
+                                set_body_height();
+                              });
+                            </script>
 		</div>
 	</div>
 </div>

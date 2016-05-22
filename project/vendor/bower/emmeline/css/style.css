@@ -299,6 +299,28 @@ i.aeroplane{
 	top: -50px;
 	left: 37%;
 }
+i.match{
+	width: 100px;
+	height: 100px;
+	background: url(../images/match.png) no-repeat;
+	float: left;
+	position: absolute;
+	text-align: center;
+	margin: 0 auto;
+	top: -50px;
+	left: 40%;
+}
+i.best{
+	width: 100px;
+	height: 100px;
+	background: url(../images/best.png) no-repeat;
+	float: left;
+	position: absolute;
+	text-align: center;
+	margin: 0 auto;
+	top: -50px;
+	left: 40%;
+}
 .desc{
 	text-align:center;
 	padding:8%;
@@ -2439,11 +2461,24 @@ span.right_line1 {
     max-width: 144px;
 }
 
+.img_profile_scaled_centered {
+    max-width: 320px;
+    max-height: 240px;
+    min-height: 240px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img_profile_scaled_little {
+    max-width: 32px;
+}
+
 h1 {
     display: block;
     font-size: 2em;
-    margin-top: 0.67em;
-    margin-bottom: 0.67em;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
     margin-left: 0;
     margin-right: 0;
     font-weight: bold;

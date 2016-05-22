@@ -75,6 +75,13 @@ $default_controller = Yii::$app->defaultRoute;
                                             echo Html::a('Stadiony', ['site/stadium'], ['class' => '']);
                                             echo "</li>";
                                     ?>
+                                    <?php 
+                                            echo "<li ";
+                                            if($currentSite=="site/match") {echo 'class="active"';}
+                                            echo "/>";
+                                            echo Html::a('Mecze', ['site/match'], ['class' => '']);
+                                            echo "</li>";
+                                    ?>
                                     <li
                                     <?php if($currentSite=="site/about") {echo 'class="active"';} ?>
                                     ><?= Html::a('O nas', ['site/about'], ['class' => '']); ?></li>

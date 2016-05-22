@@ -230,4 +230,8 @@ class SiteController extends Controller
     public function actionStadium() {
         return $this->render('stadium');
     }
+    
+    public function actionMatch() {
+        return $this->render('match');
+    }
 }

@@ -3,17 +3,34 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\base\DynamicModel;
+use yii\bootstrap\ActiveForm;
 
 $this->title = 'Zawodnicy';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-    <?php
-        $id = Yii::$app->getRequest()->getQueryParam('id');
+    <?php if(isset($_POST["DynamicModel"]))
+        {
+            $temp = $_POST["DynamicModel"];
+            $var = $temp["searchname"];
+        }
+    ?>
+
+    <?php        
         try
         {
-            $sql = "SELECT * FROM zawodnik WHERE id_zawodnika=".$id;
-            $zawodnik = Yii::$app->db->CreateCommand($sql)->queryAll();
+            if(isset($var))
+            {
+                $sql= "SELECT * FROM `zawodnik` where `imie` LIKE '%".$var."%' OR `nazwisko` LIKE '%".$var."%'";
+                $zawodnik = Yii::$app->db->CreateCommand($sql)->queryAll();
+            }
+            else
+            {
+                $id = Yii::$app->getRequest()->getQueryParam('id');
+                $sql = "SELECT * FROM `zawodnik` WHERE id_zawodnika=".$id;
+                $zawodnik = Yii::$app->db->CreateCommand($sql)->queryAll();
+            }
         }
         catch(Exception $e)
         {
@@ -32,6 +49,25 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="wrap">
         <div class="site-league">
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php
+
+        $model = new \yii\base\DynamicModel(['searchname']);
+        $model->addRule(['searchname'], 'string');
+    ?>
+    <?php $form = ActiveForm::begin([
+        'method' => 'post',
+    ]); ?>
+    <table width="100%">
+        <tr>
+            <td width="90%">
+                <?= $form->field($model, 'searchname')->textinput(['rows' => 1, 'style'=>'margin-right:5px;'])->label('Szukaj po imieniu lub nazwisku') ?>
+            </td>
+            <td width="10%">
+                <?= Html::submitButton('Szukaj', ['class' => 'btn btn-primary', 'style' => 'margin-top:22px; margin-bottom:0;']) ?>
+            </td>                         
+        </tr>
+    </table>
+    <?php ActiveForm::end() ?> 
 
     <?php          
     if(isset($zawodnik) && count($zawodnik)>=1) 

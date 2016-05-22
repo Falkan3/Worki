@@ -3,25 +3,46 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\base\DynamicModel;
+use yii\bootstrap\ActiveForm;
 
 $this->title = 'Stadiony';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
+    <?php if(isset($_POST["DynamicModel"]))
+        {
+            $temp = $_POST["DynamicModel"];
+            $var = $temp["searchname"];
+        }
+    ?>
+
     <?php
-        $id = Yii::$app->getRequest()->getQueryParam('id');
-        $id_klubu = Yii::$app->getRequest()->getQueryParam('id_klubu');
+        
         try
         {
-            $sql = "SELECT * FROM stadion WHERE id_stadionu=".$id;
-            $stadion = Yii::$app->db->CreateCommand($sql)->queryAll();
+            if(isset($var))
+            {
+                $sql= "SELECT * FROM `stadion` WHERE `nazwa` LIKE '%".$var."%'";
+                $stadion = Yii::$app->db->CreateCommand($sql)->queryAll();
+                $sql = "SELECT `id_klubu` from `klub` WHERE `klub`.`id_stadionu` = ".$stadion[0]['id_stadionu'];
+                $klub= Yii::$app->db->CreateCommand($sql)->queryAll();
+                $id_klubu = $klub[0]['id_klubu'];
+            }
+            else
+            {
+                $id = Yii::$app->getRequest()->getQueryParam('id');
+                $id_klubu = Yii::$app->getRequest()->getQueryParam('id_klubu');
+                $sql = "SELECT * FROM `stadion` WHERE id_stadionu=".$id;
+                $stadion = Yii::$app->db->CreateCommand($sql)->queryAll();
+            }
         }
         catch(Exception $e)
         {
         }
         try
         {
-            $sql = "SELECT k.nazwa_klubu, k.id_klubu, k.logo FROM klub k WHERE k.id_stadionu=".$id;
+            $sql = "SELECT k.nazwa_klubu, k.id_klubu, k.logo FROM klub k WHERE k.id_stadionu=".$stadion[0]['id_stadionu'];
             $klub = Yii::$app->db->CreateCommand($sql)->queryAll();
         }
         catch(Exception $e)
@@ -33,6 +54,27 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="wrap">
         <div class="site-league">
     <h1><?= Html::encode($this->title) ?></h1>
+    
+    <?php
+
+        $model = new \yii\base\DynamicModel(['searchname']);
+        $model->addRule(['searchname'], 'string');
+    ?>
+    <?php $form = ActiveForm::begin([
+        'method' => 'post',
+    ]); ?>
+    <table width="100%">
+        <tr>
+            <td width="90%">
+                <?= $form->field($model, 'searchname')->textinput(['rows' => 1, 'style'=>'margin-right:5px;'])->label('Szukaj po nazwie') ?>
+            </td>
+            <td width="10%">
+                <?= Html::submitButton('Szukaj', ['class' => 'btn btn-primary', 'style' => 'margin-top:22px; margin-bottom:0;']) ?>
+            </td>                         
+        </tr>
+    </table>
+    <?php ActiveForm::end() ?> 
+    
 <?php          
     if(isset($stadion) && count($stadion)>=1) 
     {   
