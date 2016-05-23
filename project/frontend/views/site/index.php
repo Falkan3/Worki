@@ -159,7 +159,7 @@ $this->title = 'Worki';
                                         {
                                           $src = '?r=image/index&id='.$klub['logo'];
                                           echo "<td>".Html::a(Html::img( $src, ['class' => '', 'title' => $klub['nazwa_klubu'], 'alt' => $klub['nazwa_klubu']] )
-                                                  , ['site/team', 'id'=>$klub['nazwa_klubu']], ['class' => ''])."</td>";                                       
+                                                  , ['site/team', 'id'=>$klub['id_klubu']], ['class' => ''])."</td>";                                       
                                         }
                                         else if(isset($klub['nazwa_klubu']))
                                         {
